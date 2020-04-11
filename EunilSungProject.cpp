@@ -9,7 +9,6 @@ int main()
     bool isColor = true;
     bool isGameOver = false;
     int x, y;
-    string winCheckArray[BACKGROUND_HIGHT][BACKGROUND_WITH];
     string bord[BACKGROUND_HIGHT][BACKGROUND_WITH];
     for (int i = 0; i < BACKGROUND_HIGHT; i++) {
         for (int j = 0; j < BACKGROUND_WITH; j++) {
@@ -68,40 +67,34 @@ int main()
         if (x > 9 || y > 9)
             continue;
         x--; y--;
-        if ((bord[y][x] == "●" || bord[y][x] == "●") || (bord[y][x] == "○" || bord[y][x] == "○"))
+        if (bord[y][x] == "●"|| bord[y][x] == "○")
             continue;
 
         if (isColor) {
-            x == BACKGROUND_WITH - 1 ? bord[y][x] = "●" : bord[y][x] = "●";
-            winCheckArray[y][x] = "white";
+            bord[y][x] = "●";
             isColor = false;
         }
         else {
-            x == BACKGROUND_WITH - 1 ? bord[y][x] = "○" : bord[y][x] = "○";
-            winCheckArray[y][x] = "black";
+            bord[y][x] = "○";
             isColor = true;
         }
         for (int i = 0; i < BACKGROUND_HIGHT; i++) {
             for (int j = 0; j < BACKGROUND_WITH; j++) {
-                if (winCheckArray[i][j] == "black" || winCheckArray[i][j] == "white") {
-                    if (winCheckArray[i][j] == winCheckArray[i + 1][j] && winCheckArray[i][j] == winCheckArray[i + 2][j]
-                        && winCheckArray[i][j] == winCheckArray[i + 3][j] && winCheckArray[i][j] == winCheckArray[i + 4][j]) {
+                if (bord[i][j] == "●" || bord[i][j] == "○") {
+                    if (bord[i][j] == bord[i + 1][j] && bord[i][j] == bord[i + 2][j]
+                        && bord[i][j] == bord[i + 3][j] && bord[i][j] == bord[i + 4][j]) {
                         isGameOver = true;
                     }
-                    if (winCheckArray[i][j] == winCheckArray[i][j + 1] && winCheckArray[i][j] == winCheckArray[i][j + 2]
-                        && winCheckArray[i][j] == winCheckArray[i][j + 3] && winCheckArray[i][j] == winCheckArray[i][j + 4]) {
+                    if (bord[i][j] == bord[i][j + 1] && bord[i][j] == bord[i][j + 2]
+                        && bord[i][j] == bord[i][j + 3] && bord[i][j] == bord[i][j + 4]) {
                         isGameOver = true;
                     }
-                    if (winCheckArray[i][j] == winCheckArray[i + 1][j + 1] && winCheckArray[i][j] == winCheckArray[i + 2][j + 2]
-                        && winCheckArray[i][j] == winCheckArray[i + 3][j + 3] && winCheckArray[i][j] == winCheckArray[i + 4][j + 4]) {
+                    if (bord[i][j] == bord[i + 1][j + 1] && bord[i][j] == bord[i + 2][j + 2]
+                        && bord[i][j] == bord[i + 3][j + 3] && bord[i][j] == bord[i + 4][j + 4]) {
                         isGameOver = true;
                     }
-                    if (winCheckArray[i][j] == winCheckArray[i + 1][j - 1] && winCheckArray[i][j] == winCheckArray[i + 2][j - 2]
-                        && winCheckArray[i][j] == winCheckArray[i + 3][j - 3] && winCheckArray[i][j] == winCheckArray[i + 4][j - 4]) {
-                        isGameOver = true;
-                    }
-                    if (winCheckArray[i][j] == winCheckArray[i - 1][j + 1] && winCheckArray[i][j] == winCheckArray[i - 2][j + 2]
-                        && winCheckArray[i][j] == winCheckArray[i - 3][j + 3] && winCheckArray[i][j] == winCheckArray[i - 4][j + 4]) {
+                    if (bord[i][j] == bord[i + 1][j - 1] && bord[i][j] == bord[i + 2][j - 2]
+                        && bord[i][j] == bord[i + 3][j - 3] && bord[i][j] == bord[i + 4][j - 4]) {
                         isGameOver = true;
                     }
                 }
